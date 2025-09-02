@@ -1,4 +1,5 @@
 /* 
+Sliding Window 
 - ให้เขียน Function ที่ชื่อว่า heaviestBagPair โดยมีคุณสมบัติดังนี้
     - รับ Parameter 1 ตัว คือ bagWeights มี Value Type เป็น Array ที่เก็บน้ำหนักกระเป๋านักเรียนแต่ละคน
         - Function นี้จะ Return กระเป๋านักเรียนคู่ที่มีน้ำหนักรวมกันมากที่สุด โดยกระเป๋า 2 ใบนี้ต้องวางอยู่ติดกัน
@@ -7,6 +8,22 @@
 
 function heaviestBagPair(bagWeights) {
   // Start Coding Here
+  let maxWeight = 0;
+  let maxBagSet = [];
+
+  if (bagWeights.length < 2) return null;
+
+  for (let i = 0; i < bagWeights.length - 1; i++) {
+    let currentWeight = bagWeights[i] + bagWeights[i + 1];
+
+    if (currentWeight > maxWeight) {
+      maxWeight = currentWeight;
+      maxBagSet = [bagWeights[i], bagWeights[i + 1]];
+    }
+  }
+
+  return maxBagSet;
+
 }
 
 console.log(heaviestBagPair([5, 8, 12, 15, 7]));
@@ -17,3 +34,4 @@ console.log(heaviestBagPair([10, 20, 5, 7, 15]));
 
 console.log(heaviestBagPair([4]));
 // Output: null เพราะมีกระเป๋าแค่ใบเดียว
+
